@@ -1,5 +1,4 @@
 #include "String.h"
-
 String::String()
 {
     str_length=0;
@@ -7,6 +6,7 @@ String::String()
 
 String::String(char *str)
 {
+    str_adr=str;
     while(*str != '\0')
     {
         str_length++;
@@ -29,11 +29,11 @@ int String::Length()
 
 int String::Find(char ch, int start)
 {
-    int result=-1;
-    while(*this!='/0')
+    int i=0;
+    while(str_adr[start+i]!='\0')
     {
-        if(*(this)==ch) {result=*(p_arr+start);break;}
-        this++;
+        if(str_adr[start+i]==ch) {return start+i;}
+        i++;
     }
-    return result;
+    return -1;
 }

@@ -19,6 +19,7 @@ class String
 
     private:
         int str_length=0;
+        char *str_adr;
 };
 
 #endif // STRING_H
