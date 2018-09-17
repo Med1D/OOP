@@ -35,7 +35,19 @@ int main()
     }
     int index_find = stroka->Find(sym,start_pos);
     printf("Метод Find нашёл %c в позиции: %d", sym,index_find);
+    cout << endl << "-----------------------" << endl;
     //---------------
+
+    //---------------FINDLAST FUNCTION
+    char sym1;
+    cout << "Введите символ: ";
+    cin >> sym1;
+    int index_find_last=stroka->FindLast(sym1);
+    printf("Метод FindLast нашёл последнее вхождение %c в позиции: %d", sym1,index_find_last);
+    cout << endl << "-----------------------" << endl;
+    //---------------
+
+
 
 
 

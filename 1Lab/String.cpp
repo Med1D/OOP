@@ -37,3 +37,14 @@ int String::Find(char ch, int start)
     }
     return -1;
 }
+
+int String::FindLast(char ch)
+{
+    int i=str_length-1;
+    while (str_adr[i]!=str_adr[0])
+    {
+        if (str_adr[i]==ch) {return i;}
+        i--;
+    }
+    return -1;
+}
