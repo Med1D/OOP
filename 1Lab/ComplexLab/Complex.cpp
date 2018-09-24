@@ -39,8 +39,15 @@ void Complex::Divide(Complex *x)
 {
     float re_chisl=this->re*x->re+this->im*x->im;
     float im_chisl=this->re*(-x->im)+this->im*x->re;
+    if((x->re*x->re)+(x->im*x->im)!=0)
+    {
     this->re=re_chisl/((x->re*x->re)+(x->im*x->im));
     this->im=im_chisl/((x->re*x->re)+(x->im*x->im));
+    }
+    else
+    {
+    printf("Ошибка: деление на 0!");
+    }
 }
 
 
