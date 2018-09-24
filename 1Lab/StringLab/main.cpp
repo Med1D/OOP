@@ -5,30 +5,29 @@ using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL,"Russian");
     char *p_arr=new char[50];
     char *p_arr2=new char[50];
     char *p_arr3 = new char[50];
-    cout << "Пожалуйста, введите первую строку: ";
+    cout << "Please, enter first string: ";
     gets(p_arr);
-    cout << "Пожалуйста, введите copy-строку: ";
+    cout << "Please, enter copy-string: ";
     gets(p_arr2);
-    cout << "Пожалуйста, введите insert-строку: ";
+    cout << "Please, enter insert-string: ";
     gets(p_arr3);
     int dlina=0;
     cout << "-----------------------"<< endl;
 
 
-    String *stroka=new String(p_arr);//Конструктор для объекта строка(с параметрами)
-    dlina = stroka->Length();//Присвоение переменной длины строки
-    printf("Длина строки: %d", dlina);//Вывод длины строки
+    String *stroka=new String(p_arr);
+    dlina = stroka->Length();
+    printf("String's length: %d", dlina);
     cout << endl << "-----------------------" << endl;
 
 
     //---------------COPY FUNCTION
     String *stroka2=new String(p_arr2);
     stroka->Copy(*stroka2);
-    cout << "Рузльтат метода Copy: ";
+    cout << "Result of Copy method: ";
     stroka->print();
     cout << endl << "-----------------------" << endl;
     //---------------
@@ -36,26 +35,21 @@ int main()
     //---------------FIND FUNCTION
     char sym;
     int start_pos=0;
-    cout << "Введите символ: ";
+    cout << "Enter a char for Find method: ";
     cin >> sym;
-    cout << "Введите с какого индекса искать: ";
+    cout << "Enter an index for find method: ";
     cin >> start_pos;
-    while(start_pos>=stroka->Length() || start_pos<0)
-    {
-        cout << "Введите индекс корректно: ";
-        cin >> start_pos;
-    }
     int index_find = stroka->Find(sym,start_pos);
-    printf("Метод Find нашёл %c в позиции: %d", sym,index_find);
+    printf("Method Find find %c in index: %d", sym,index_find);
     cout << endl << "-----------------------" << endl;
     //---------------
 
     //---------------FINDLAST FUNCTION
     char sym1;
-    cout << "Введите символ: ";
+    cout << "Enter a char for Findlast method: ";
     cin >> sym1;
     int index_find_last=stroka->FindLast(sym1);
-    printf("Метод FindLast нашёл последнее вхождение %c в позиции: %d", sym1,index_find_last);
+    printf("Method FindLast find last emergence %c in index: %d", sym1,index_find_last);
     cout << endl << "-----------------------" << endl;
     //---------------
 
@@ -63,22 +57,10 @@ int main()
     String *Sub_str = new String[50];
     int index_sub;
     int count_sub;
-    cout << "Введите индекс, с которого будет начато выделение строки: ";
+    cout << "Enter an index, where we will start use Substr method: ";
     cin >> index_sub;
-     while(index_sub<0 || index_sub>=stroka->Length())
-    {
-        cout << "Введите индекс корректно: ";
-        cin >> index_sub;
-    }
-    cout << "Введите длину, выделяемой подстроки: ";
-    cin >> count_sub;
-    while(count_sub>stroka->Length()-index_sub || count_sub<=0)
-    {
-        cout << "Введите длину корректно: ";
-        cin >> count_sub;
-    }
     *Sub_str=stroka->Substr(index_sub,count_sub);
-    printf("Выделенная строка методом Substr: ");
+    printf("Substring by Substr method: ");
     Sub_str->print();
     delete [] Sub_str;
     cout << endl << "-----------------------" << endl;
@@ -86,44 +68,28 @@ int main()
 
     //---------------REMOVE FUNCTION
     int index_remove,count_remove;
-    cout << "Введите индекс: ";
+    cout << "Enter an index for Remove method: ";
     cin >> index_remove;
-    while(index_remove<0 || index_remove>=stroka->Length())
-    {
-        cout << "Введите индекс корректно: ";
-        cin >> index_remove;
-    }
-    cout << "Введите длину удаляемой строки: ";
+    cout << "Enter length of remove string: ";
     cin >> count_remove;
-    while(count_remove<0 || count_remove>stroka->Length()-index_remove)
-    {
-        cout << "Введите длину удаляемой строки корректно: ";
-        cin >> count_remove;
-    }
     stroka->Remove(index_remove,count_remove);
-    cout << "Рузльтат метода Remove: ";
+    cout << "Result of Remove method: ";
     stroka->print();
     cout << endl << "-----------------------" << endl;
 
     //---------------INSERT FUNCTION
     int index_insert=0;
-    cout << "Введите индекс, перед которым будем вставлена строка методом Insert: ";
+    cout << "Enter an index, before what we will use Insert method: ";
     cin >> index_insert;
-    while(index_insert<0 || index_insert>stroka->Length())
-    {
-        cout << "Введите индекс корректно: ";
-        cin >> index_insert;
-    }
     stroka->Insert(p_arr3,index_insert);
-    cout << "Результат выполнения метода Insert: ";
+    cout << "Result of Insert method: ";
     stroka->print();
     cout << endl << "-----------------------" << endl;
     //---------------
 
-
-    delete stroka;
+    stroka->~String();
+    stroka2->~String();
     delete [] p_arr;
-    delete stroka2;
     delete [] p_arr2;
     delete [] p_arr3;
     return 0;

@@ -1,4 +1,5 @@
 #include "String.h"
+#include <iostream>
 String::String()
 {
     str_length=0;
@@ -14,6 +15,12 @@ String::String(char *str)
     }
 }
 
+String::String(const String &other)
+{
+    this->str_length = other.str_length;
+    this->str_adr = new char[other.str_length+1];
+    String::Copy(other.str_adr);
+}
 
 String::~String()
 {
@@ -36,8 +43,13 @@ void String::Copy(const String& str)
     }
 }
 
-int String::Find(char ch, int start)
+int String::Find(char &ch, int start)
 {
+    while(start>=this->Length() || start<0)
+    {
+        std::cout << "Enter index correctly: ";
+        std::cin >> start;
+    }
     int i=0;
     while(str_adr[start+i]!='\0')
     {
@@ -60,6 +72,18 @@ int String::FindLast(char ch)
 
 String String::Substr(int index,int count)//со
 {
+     while(index<0 || index>=this->Length())
+    {
+        std::cout << "Enter index correctly: ";
+        std::cin >> index;
+    }
+    std::cout << "Enter length of substring: ";
+    std::cin >> count;
+    while(count>this->Length()-index || count<=0)
+    {
+        std::cout << "Enter length correctly: ";
+        std::cin >> count;
+    }
     char *buf = new char[str_length];
     int j=0;
     for( int i=index;i<index+count;i++)
@@ -72,6 +96,16 @@ String String::Substr(int index,int count)//со
 
 void String::Remove(int index, int count)
 {
+    while(index<0 || index>=this->Length())
+    {
+        std::cout << "Enter an index correctly: ";
+        std::cin >> index;
+    }
+    while(count<0 || count>this->Length()-index)
+    {
+        std::cout << "Enter length of remove string correctly: ";
+        std::cin >> count;
+    }
     char *buffer = new char[str_length+1];
     int j=0;
     for(int i=0;i<this->Length();i++)
@@ -88,6 +122,11 @@ void String::Remove(int index, int count)
 
 void String::Insert(char *s, int index)
 {
+     while(index<0 || index>this->Length())
+    {
+        std::cout << "Enter an index correctly: ";
+        std::cin >> index;
+    }
     char *buffer = new char[50];
     int j=0;
 

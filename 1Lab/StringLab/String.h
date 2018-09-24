@@ -6,11 +6,12 @@ class String
 {
     public:
         String();
+        String(const String &other);
         String(char *str);
         virtual ~String();
         int Length();
         void Copy(const String& str);
-        int Find(char ch, int start);
+        int Find(char &ch, int start);
         int FindLast(char ch);
         String Substr(int index, int count);
         void Remove(int index, int count);
