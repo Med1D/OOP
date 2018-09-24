@@ -6,6 +6,7 @@ class Complex
 {
     public:
         Complex();
+        Complex(const Complex &other);
         virtual ~Complex();
         void Complex_set(float x, float y);
         void Plus(Complex *x);

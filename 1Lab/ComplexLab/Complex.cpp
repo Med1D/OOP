@@ -4,7 +4,11 @@ Complex::Complex()
 {
 
 }
-
+Complex::Complex(const Complex &other)
+{
+    this->re=other.re;
+    this->im=other.im;
+}
 Complex::~Complex()
 {
 
@@ -46,7 +50,7 @@ void Complex::Divide(Complex *x)
     }
     else
     {
-    printf("Ошибка: деление на 0!");
+    printf("\nОшибка: деление на 0!\n");
     }
 }
 
